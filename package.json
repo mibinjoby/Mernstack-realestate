@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev":"nodemon backend/index.js",
-    "start":"node backend/index.js"
+    "dev": "nodemon backend/index.js",
+    "start": "node backend/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/mibinjoby/Mernstack-realestate#readme",
   "dependencies": {
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
+    "mongoose": "^8.16.4",
     "nodemon": "^3.1.10"
   }
 }

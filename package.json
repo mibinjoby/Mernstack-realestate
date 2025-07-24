@@ -1,0 +1,26 @@
+{
+  "name": "mern-realestate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev":"nodemon backend/index.js",
+    "start":"node backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mibinjoby/Mernstack-realestate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mibinjoby/Mernstack-realestate/issues"
+  },
+  "homepage": "https://github.com/mibinjoby/Mernstack-realestate#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}

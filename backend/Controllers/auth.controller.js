@@ -30,7 +30,7 @@ export const signup = async (req, res , next) =>{
 
         const validpassword = bcryptjs.compareSync(password,validUser.password)
 
-      if (!validUser) return next (errorHandler(401,'wrong credentials ❌ '))
+      if (!validpassword) return next (errorHandler(401,'wrong credentials ❌ '))
 
         const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
         const {password: pass, ... rest} = validUser._doc

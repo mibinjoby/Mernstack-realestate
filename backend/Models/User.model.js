@@ -18,9 +18,10 @@
         },
         avatar:{
             type:String,
-            default:"data:https://i.pinimg.com/474x/07/c4/72/07c4720d19a9e9edad9d0e939eca304a.jpg" }
+            default:"data:https://i.pinimg.com/474x/07/c4/72/07c4720d19a9e9edad9d0e939eca304a.jpg" 
+        },
     } ,
-    {timestaps: true}
+    {timestamps: true}
 )
 
     const User = mongoose.model('User', userSchema);

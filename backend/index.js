@@ -27,17 +27,18 @@ app.use('/api/user',UserRouter)
 
 app.use('/api/auth',authRouter)
 
-app.use((err, req, res,next)=> {
+app.use((err, req, res, next) => {
+  console.error('❌ Error caught by middleware:', err); // Debug
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
 
-   const statusCode = err.statusCode ||500;
-   const message = err.message||'Internal Server Error'
-   return res.status(statusCode).json({
-    success:false,
+  res.status(statusCode).json({
+    success: false,
     statusCode,
     message,
+  });
+});
 
-   })
-})
 
  
 

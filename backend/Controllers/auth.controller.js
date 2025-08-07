@@ -44,7 +44,6 @@ export const signup = async (req, res , next) =>{
       
     } catch (error) {
       next(error)
-      
     }
   }
 
@@ -59,10 +58,7 @@ export const signup = async (req, res , next) =>{
          )
        const {password: pass, ...rest} =user._doc
 
-             res
-             .cookie('access_token',token, {httpOnly:true} )
-             .status(200)
-             .json(rest);
+           res.cookie('access_token',token,{httpOnly: true }).status(200).json(rest)
 
 
         }else {

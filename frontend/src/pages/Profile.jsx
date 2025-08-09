@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { useRef, useState } from "react"
 import { updateUserStart  , updateUserSuccess , updateUserFailure ,deleteUserFailure,   deleteUserSuccess ,deleteUserStart, signoutUserStart, signoutUserSuccess, signoutUserFailure } from '../Redux/user/userslice.js'
 import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 import { deleteUser } from "../../../backend/Controllers/User.controller.js"
 
 
@@ -102,7 +103,9 @@ function Profile() {
 
 
 
+        
         <button disabled={loading}  className="bg-slate-700 text-white rounded-lg p-3 uppercase  hover:opacity-95 disabled:opacity-95">{loading ? 'Loadng..' :'update'}</button>
+        <Link to={"/createlisting"} className="bg-green-600 text-white text-center rounded-lg p-3 uppercase  hover:opacity-95 disabled:opacity-95">create listing</Link>
       </form>
 
 

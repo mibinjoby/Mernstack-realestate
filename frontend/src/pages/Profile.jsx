@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { useRef, useState } from "react"
-import { updateUserStart  , updateUserSuccess , updateUserFailure ,deleteUserFailure,   deleteUserSuccess ,deleteUserStart } from '../Redux/user/userslice.js'
+import { updateUserStart  , updateUserSuccess , updateUserFailure ,deleteUserFailure,   deleteUserSuccess ,deleteUserStart, signoutUserStart, signoutUserSuccess, signoutUserFailure } from '../Redux/user/userslice.js'
 import { useDispatch } from "react-redux"
 import { deleteUser } from "../../../backend/Controllers/User.controller.js"
 
@@ -53,13 +53,32 @@ function Profile() {
       })
       const data = await res.json()
       if (data.success === false){
-        dispatch(deleteUserFailure(data.message))
+         dispatch(signoutUserFailure(data.message))
         return;
       }
       dispatch(deleteUserSuccess(data))
     } catch (error) {
-      dispatch(deleteUserFailure(error.message))
+      dispatch(signoutUserFailure(data.message))
     }
+  }
+
+
+  const handlesignout =  async () =>{
+    try {
+      dispatch(signoutUserStart())
+
+      const res = await fetch ('/api/auth/signout');
+      const data =await res.json()
+      if (data.success === false) {
+          dispatch(signoutUserFailure(data.message)) 
+        return
+      }
+        dispatch(signoutUserSuccess())
+
+    } catch (error) {
+      dispatch(signoutUserFailure(error.message)) 
+    }
+
   }
 
   
@@ -88,10 +107,10 @@ function Profile() {
 
 
       <div className="flex justify-between mt-5 ">
-        <span onClick={handleDeleteUser} className="text-red-600 font-bold">
+        <span onClick={handleDeleteUser} className="text-red-600 font-bold cursor-default">
           Delete account
         </span>
-         <span className="text-red-600 font-bold">
+         <span onClick={handlesignout} className="text-red-600 font-bold cursor-default">
           Sign out
         </span>
       </div>

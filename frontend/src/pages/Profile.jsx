@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux"
 import { useRef, useState } from "react"
-import { updateUserStart  , updateUserSuccess , updateUserFailure} from '../Redux/user/userslice.js'
+import { updateUserStart  , updateUserSuccess , updateUserFailure ,deleteUserFailure,   deleteUserSuccess ,deleteUserStart } from '../Redux/user/userslice.js'
 import { useDispatch } from "react-redux"
+import { deleteUser } from "../../../backend/Controllers/User.controller.js"
 
 
 
@@ -42,6 +43,26 @@ function Profile() {
   };
 
   
+
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart())
+
+      const res =await fetch (`/api/user/delete/${currentUser._id}`,{
+        method: 'DELETE',
+      })
+      const data = await res.json()
+      if (data.success === false){
+        dispatch(deleteUserFailure(data.message))
+        return;
+      }
+      dispatch(deleteUserSuccess(data))
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message))
+    }
+  }
+
+  
   return (
     <div className="p-3 max-w-lg mx-auto">
 
@@ -67,7 +88,7 @@ function Profile() {
 
 
       <div className="flex justify-between mt-5 ">
-        <span className="text-red-600 font-bold">
+        <span onClick={handleDeleteUser} className="text-red-600 font-bold">
           Delete account
         </span>
          <span className="text-red-600 font-bold">
@@ -75,7 +96,7 @@ function Profile() {
         </span>
       </div>
       <p className="text-red-700">{error ? error : ''} </p>
-      <p className="text-green-700 mt-5"> {updateSuccess ? 'User is updated successfully!' : ''}  </p>
+      <p className="text-green-700 mt-5"> {updateSuccess ? '✅ User is updated successfully!' : ''}  </p>
  
     </div>
   )

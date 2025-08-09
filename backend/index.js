@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import UserRouter from './ApiRoutes/UserRouter.js'
 import authRouter from './ApiRoutes/auth.route.js';
 import cookieParser from 'cookie-parser';
+import listingRouter from './ApiRoutes/listingRouter.js';
+
 
 
 dotenv.config();
@@ -32,6 +34,10 @@ app.listen(3000, () => {
 app.use('/api/user',UserRouter)
 
 app.use('/api/auth',authRouter)
+
+app.use('/api/listing',listingRouter )
+
+// error handling middleware
 
 app.use((err, req, res, next) => {
   console.error('❌ Error caught by middleware:', err); // Debug
